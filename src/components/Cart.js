@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import "../styles.css";
-
+import store from '../redux/store';
 import CartItem from './CartItem';
 
 class Cart extends Component {
   state = {
     cartGoods: []
   }
+
+  componentDidMount(){
+    store.subscribe(() => {                            // навешиваю слушатель событий на странице через componentDidMount
+      const globalState = store.getState();             // эту функцию нужно выполнять каждый раз при измененеии store
+      this.setState({ cartGoods: globalState.cart })    //  записывает globalState.cart в cartGoods,  т.е. в state текущего компонента
+    })
+  }
+
   getTotal() {
     const { cartGoods } = this.state;
     return cartGoods.reduce((acc, item) => acc + item.price, 0);

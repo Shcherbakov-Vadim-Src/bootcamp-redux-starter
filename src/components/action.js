@@ -6,4 +6,13 @@ export function addGoodAction(id){
         id: id  
       }
     }
+}   
+
+export function removeGood(id){   
+    return {
+        type: 'REMOVE_GOOD_FROM_CART',                                                   
+        payload: {
+            id: id  
+        }
+    }
 }

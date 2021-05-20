@@ -23,14 +23,30 @@ let initialState = {
 export default function reducer( state = initialState, action ) {
     switch (action.type) {
         case 'ADD_GOOD_TO_CART':                             // смотрит на action и понимает, что ему нужно сделать
+            
             const match = state.goods.find((good) => {
                 return good.id === action.payload.id           // ищет товар по id 
             });
-            const newCart = [...state.cart, match]    //  создали через иммутабельность копию state и добавили в него match, все равно, что используя push
-            const updateState = { ...state };       // изменили state
-            updateState.cart = newCart;           // и вернули его измененный / обновленный 
-            return updateState;                 
+
+            let valet = {...match};
+            const newCart = [...state.cart, valet]   //  создали через иммутабельность копию state и добавили в него match, все равно, что используя push
+            
+            newCart.map((item, index) => {
+                item.id = index;
+               return item;
+            })
+
+            const updateState = { ...state };      
+            updateState.cart = newCart;                 // изменили state
+            return updateState;                       // и вернули его измененный / обновленный 
+        case 'REMOVE_GOOD_FROM_CART':                             // смотрит на action и понимает, что ему нужно сделать    
+            let newCartSub = state.cart.filter((item) => {
+                return item.id !== action.payload.id;
+            })
+            const updateStateSub = { ...state };       
+            updateStateSub.cart = newCartSub;           
+            return updateStateSub;                
         default:
-             return state;
+             return state;   
     }
 }

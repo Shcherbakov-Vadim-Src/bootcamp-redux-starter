@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { addGoodAction } from '../components/action';
 import store from '../redux/store';
 
+
 class GoodsItem extends Component {
 
   // addCardHandler = (id) => {    // по обработчику событий создаем action

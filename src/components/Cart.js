@@ -3,6 +3,7 @@ import "../styles.css";
 import store from '../redux/store';
 import CartItem from './CartItem';
 
+
 class Cart extends Component {
   state = {
     cartGoods: []
@@ -34,7 +35,6 @@ class Cart extends Component {
         :
           <p className="cart__note">Nothing in the cart now</p>
         }
-        
         <p className="cart__total">Total: {this.getTotal()}.00$</p>
       </div>
     );

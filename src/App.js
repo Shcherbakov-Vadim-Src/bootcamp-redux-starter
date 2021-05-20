@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./styles.css";
-import { Provider } from 'react-redux';
 import store from './redux/store';
 
 import Header from './components/Header';
@@ -11,7 +10,6 @@ class App extends Component {
   render() {
 
     return (
-      <Provider store={store}>
         <div className="app">
           <header className="app__header">
             <Header />
@@ -25,7 +23,6 @@ class App extends Component {
             </div>
           </main>
         </div>
-      </Provider>
     );
   }
 }
